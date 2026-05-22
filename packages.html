@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Packages | Alamo Energy Solutions</title>
+  <meta name="description" content="View solar and battery backup packages from Alamo Energy Solutions — sized for San Antonio homes." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      margin-top: 48px;
+    }
+    .package-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+    }
+    .package-card.featured {
+      border-color: var(--dark-green);
+      box-shadow: 0 4px 24px rgba(30,39,20,0.12);
+    }
+    .package-header {
+      background: var(--dark-green);
+      color: var(--cream);
+      padding: 28px;
+    }
+    .package-header.light {
+      background: var(--cream);
+      color: var(--dark-green);
+    }
+    .package-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(245,240,232,0.2);
+      color: var(--cream);
+      padding: 4px 10px;
+      border-radius: 2px;
+      margin-bottom: 12px;
+    }
+    .package-header.light .package-badge {
+      background: rgba(30,39,20,0.1);
+      color: var(--dark-green);
+    }
+    .package-name {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: normal;
+      margin-bottom: 8px;
+    }
+    .package-desc {
+      font-size: 0.88rem;
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+    .package-body {
+      padding: 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .package-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+      flex: 1;
+    }
+    .package-features li {
+      display: flex;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+    }
+    .package-features li::before {
+      content: '✓';
+      color: var(--dark-green);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .package-cta {
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">
+        <img src="https://static.wixstatic.com/media/a4d5c8_ef5927a9f8e044c197f343396d3817cb~mv2.png" alt="Alamo Energy Solutions logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <span style="display:none;">Alamo Energy Solutions</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="packages.html" class="active">Packages</a></li>
+        <li><a href="financing.html">Financing</a></li>
+        <li><a href="about.html">About &amp; Contact</a></li>
+        <li><a href="book-online.html" class="nav-cta">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Page Hero ── -->
+  <section class="page-hero">
+    <h1>Home Energy Packages</h1>
+    <p>Choose the right level of protection for your family — from essential backup to full energy independence. Every package is sized for your home's actual needs.</p>
+  </section>
+
+  <!-- ── Packages ── -->
+  <section style="padding: var(--section-pad); background: var(--cream);">
+    <div class="container">
+      <p class="section-label">Our Packages</p>
+      <h2 class="section-title">Find the right fit for your home</h2>
+      <p class="section-subtitle">All packages include professional installation, permitting, and a custom system assessment. Financing available on all options.</p>
+      <div class="packages-grid">
+
+        <div class="package-card">
+          <div class="package-header light">
+            <span class="package-badge">Essential</span>
+            <div class="package-name">Essential Backup</div>
+            <p class="package-desc">Keep the lights on and your essentials running during an outage.</p>
+          </div>
+          <div class="package-body">
+            <ul class="package-features">
+              <li>Single battery storage unit</li>
+              <li>Essential circuit backup (lights, fridge, phone charging)</li>
+              <li>Automatic outage detection and switchover</li>
+              <li>System monitoring app</li>
+              <li>Professional installation &amp; permitting</li>
+            </ul>
+            <div class="package-cta">
+              <a href="book-online.html" class="btn btn-dark" style="width:100%; text-align:center;">Get a Quote</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="package-card featured">
+          <div class="package-header">
+            <span class="package-badge">Most Popular</span>
+            <div class="package-name">Whole-Home Backup</div>
+            <p class="package-desc">Full home protection with expanded capacity for extended outages.</p>
+          </div>
+          <div class="package-body">
+            <ul class="package-features">
+              <li>Dual battery storage units</li>
+              <li>Whole-home backup coverage</li>
+              <li>Solar integration ready</li>
+              <li>Automatic outage detection and switchover</li>
+              <li>CPS demand credit eligible</li>
+              <li>System monitoring app</li>
+              <li>Professional installation &amp; permitting</li>
+            </ul>
+            <div class="package-cta">
+              <a href="book-online.html" class="btn btn-primary" style="background: var(--cream); color: var(--dark-green); width:100%; text-align:center;">Get a Quote</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="package-card">
+          <div class="package-header light">
+            <span class="package-badge">Full System</span>
+            <div class="package-name">Solar + Battery</div>
+            <p class="package-desc">Maximum savings and energy independence — produce and store your own power.</p>
+          </div>
+          <div class="package-body">
+            <ul class="package-features">
+              <li>Custom solar array sized to your usage</li>
+              <li>Battery storage (1 or 2 units based on system size)</li>
+              <li>Whole-home backup coverage</li>
+              <li>CPS demand credits + net metering</li>
+              <li>Federal tax credit eligible (you own it)</li>
+              <li>Free roof option available (GAF Certified)</li>
+              <li>System monitoring app</li>
+              <li>Professional installation &amp; permitting</li>
+            </ul>
+            <div class="package-cta">
+              <a href="book-online.html" class="btn btn-dark" style="width:100%; text-align:center;">Get a Quote</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p style="text-align: center; margin-top: 40px; color: var(--text-mid); font-size: 0.9rem;">
+        Not sure which package fits? <a href="index.html#sizing" style="color: var(--dark-green); font-weight: 600;">Use our free system sizing calculator →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Brands ── -->
+  <section class="brands" style="background: var(--white);">
+    <h2>Installed with Top-Tier Brands</h2>
+    <div class="brands-grid">
+      <div class="brand-card">
+        <h3>Tesla Powerwall</h3>
+        <p>Seamless whole-home protection with sleek integration and smart energy management.</p>
+        <p class="brand-note">Best for: Seamless backup and sleek integration.</p>
+      </div>
+      <div class="brand-card">
+        <h3>Franklin WH</h3>
+        <p>Total control over solar, batteries, generators, and EV charging in one system.</p>
+        <p class="brand-note">Best for: Complex energy ecosystems and generators.</p>
+      </div>
+      <div class="brand-card">
+        <h3>SolarEdge</h3>
+        <p>Power optimizers and smart home energy controls that maximize production and efficiency.</p>
+        <p class="brand-note">Best for: Maximum solar production and roof efficiency.</p>
+      </div>
+      <div class="brand-card">
+        <h3>Enphase</h3>
+        <p>Panel-level microinverter performance with flexible design and powerful monitoring.</p>
+        <p class="brand-note">Best for: Reliability and panel-level monitoring.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="san-antonio">
+    <div class="container">
+      <h2 class="section-title">Ready to choose your package?</h2>
+      <p>We'll size your system based on your actual usage and backup goals. No guesswork.</p>
+      <a href="book-online.html" class="btn btn-outline">Get Started</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="https://static.wixstatic.com/media/a4d5c8_ef5927a9f8e044c197f343396d3817cb~mv2.png" alt="Alamo Energy Solutions" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <span class="brand-name" style="display:none;">Alamo Energy Solutions</span>
+        <p>Empowering San Antonio homeowners with custom energy systems and reliable backup power solutions.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="packages.html">Packages</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="about.html">About &amp; Contact</a></li>
+          <li><a href="book-online.html">Get Started</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <address>
+          San Antonio, Texas<br />
+          <a href="mailto:hello@alamoenergysolutions.com">hello@alamoenergysolutions.com</a>
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Alamo Energy Solutions. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
