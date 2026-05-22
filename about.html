@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About &amp; Contact | Alamo Energy Solutions</title>
+  <meta name="description" content="Learn about Alamo Energy Solutions and get in touch. We're a local San Antonio team helping homeowners achieve energy independence." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">
+        <img src="https://static.wixstatic.com/media/a4d5c8_ef5927a9f8e044c197f343396d3817cb~mv2.png" alt="Alamo Energy Solutions logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <span style="display:none;">Alamo Energy Solutions</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="packages.html">Packages</a></li>
+        <li><a href="financing.html">Financing</a></li>
+        <li><a href="about.html" class="active">About &amp; Contact</a></li>
+        <li><a href="book-online.html" class="nav-cta">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Page Hero ── -->
+  <section class="page-hero">
+    <h1>Empowering San Antonio Families with Reliable Power</h1>
+    <p>We founded Alamo Energy Solutions with a simple mission: to provide San Antonio homeowners with practical, reliable energy solutions that move beyond the grid.</p>
+  </section>
+
+  <!-- ── About ── -->
+  <section style="padding: var(--section-pad); background: var(--white);">
+    <div class="container" style="max-width: 780px;">
+      <p class="section-label">Our Mission</p>
+      <h2 class="section-title">Honest energy solutions for real San Antonio families.</h2>
+      <p style="color: var(--text-mid); margin-bottom: 20px; line-height: 1.8;">By focusing on custom system sizing and flexible financing, we help families prepare for outages and gain true energy independence. We believe every homeowner deserves clear information and honest guidance — not high-pressure sales tactics.</p>
+      <p style="color: var(--text-mid); margin-bottom: 20px; line-height: 1.8;">From the summer heat to unexpected winter storms, San Antonio's grid can be unpredictable. We design and install systems built specifically for this climate and your home's unique needs — so when the lights go out on your street, yours stay on.</p>
+      <p style="color: var(--text-mid); line-height: 1.8;">We live by our word. Integrity is everything to us.</p>
+    </div>
+  </section>
+
+  <!-- ── Contact ── -->
+  <section class="form-section" style="background: var(--cream);">
+    <div class="form-section-inner">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Contact Alamo Energy Solutions</h2>
+      <p style="color: var(--text-mid); margin-bottom: 8px;">Have questions about custom battery backup or flexible financing? We're here to help you take control of your power.</p>
+      <form class="contact-form" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="firstName">First Name *</label>
+          <input type="text" id="firstName" name="firstName" required />
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name *</label>
+          <input type="text" id="lastName" name="lastName" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" />
+        </div>
+        <div class="form-group full-width">
+          <label for="message">Message *</label>
+          <textarea id="message" name="message" required placeholder="Tell us about your home and what you're looking for..."></textarea>
+        </div>
+        <div class="full-width" style="text-align: center; margin-top: 8px;">
+          <button type="submit" class="btn btn-dark">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── Contact Details ── -->
+  <section style="padding: 60px 24px; background: var(--dark-green); color: var(--cream);">
+    <div class="container" style="max-width: 780px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+      <div>
+        <h3 style="font-family: var(--font-serif); font-size: 1.4rem; font-weight: normal; margin-bottom: 20px;">Contact</h3>
+        <p style="color: rgba(245,240,232,0.75); line-height: 1.8;">
+          Email: <a href="mailto:hello@alamoenergysolutions.com" style="color: var(--cream-dark);">hello@alamoenergysolutions.com</a><br />
+          San Antonio, Texas and surrounding areas
+        </p>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-serif); font-size: 1.4rem; font-weight: normal; margin-bottom: 20px;">Service Area</h3>
+        <p style="color: rgba(245,240,232,0.75); line-height: 1.8;">We serve San Antonio and surrounding communities. Whether you're in the city or the surrounding Hill Country suburbs, we're your local energy team.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="https://static.wixstatic.com/media/a4d5c8_ef5927a9f8e044c197f343396d3817cb~mv2.png" alt="Alamo Energy Solutions" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <span class="brand-name" style="display:none;">Alamo Energy Solutions</span>
+        <p>Empowering San Antonio homeowners with custom energy systems and reliable backup power solutions.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="packages.html">Packages</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="about.html">About &amp; Contact</a></li>
+          <li><a href="book-online.html">Get Started</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <address>
+          San Antonio, Texas<br />
+          <a href="mailto:hello@alamoenergysolutions.com">hello@alamoenergysolutions.com</a>
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Alamo Energy Solutions. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
