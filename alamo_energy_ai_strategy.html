@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alamo Energy Solutions — AI Strategy Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #F5A623;
+    --ember: #E8510A;
+    --night: #0A0D14;
+    --deep: #111520;
+    --card: #161B28;
+    --border: #1E2535;
+    --text: #E8EAF0;
+    --muted: #6B7589;
+    --accent: #4ECDC4;
+    --green: #2ECC71;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--night);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.35;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    padding: 32px 48px 0;
+    position: relative; z-index: 10;
+  }
+  .header-top {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 32px;
+  }
+  .brand {
+    display: flex; flex-direction: column;
+  }
+  .brand-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+  .brand-name span { color: var(--sun); }
+  .brand-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .header-stats {
+    display: flex; gap: 32px;
+  }
+  .hstat {
+    display: flex; flex-direction: column; align-items: flex-end;
+  }
+  .hstat strong {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--sun);
+    line-height: 1;
+  }
+  .hstat span {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ── TABS ── */
+  .tabs-nav {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs-nav::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 14px 24px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .tab-btn .tab-icon { font-size: 14px; }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active {
+    color: var(--sun);
+    border-bottom-color: var(--sun);
+  }
+
+  /* ── PANELS ── */
+  .tab-panels { position: relative; }
+  .panel {
+    display: none;
+    padding: 48px;
+    animation: fadeIn 0.25s ease;
+  }
+  .panel.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── PANEL HEADER ── */
+  .panel-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--sun);
+    margin-bottom: 8px;
+  }
+  .panel-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 60px);
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    margin-bottom: 40px;
+  }
+
+  /* ── OVERVIEW PANEL ── */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+  .overview-card {
+    background: var(--card);
+    padding: 32px;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .overview-card:hover { background: #1A2130; }
+  .overview-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--sun);
+    transition: height 0.3s;
+  }
+  .overview-card:hover::before { height: 100%; }
+  .ov-icon { font-size: 26px; margin-bottom: 12px; display: block; }
+  .ov-title {
+    font-weight: 700; font-size: 13px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .ov-body { font-size: 13px; color: var(--muted); line-height: 1.65; }
+  .ov-tag {
+    display: inline-block; margin-top: 12px;
+    padding: 3px 9px;
+    background: rgba(245,166,35,0.08);
+    border: 1px solid rgba(245,166,35,0.2);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; color: var(--sun);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .big-angle {
+    background: linear-gradient(135deg, var(--card) 0%, #0F1520 100%);
+    border: 1px solid var(--border);
+    padding: 32px;
+    display: flex; gap: 24px; align-items: flex-start;
+  }
+  .big-angle-icon {
+    font-size: 36px; flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .big-angle-text h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px; letter-spacing: 0.03em;
+    margin-bottom: 6px;
+  }
+  .big-angle-text p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+  /* ── AI ENHANCEMENTS ── */
+  .enhancement-list { display: flex; flex-direction: column; gap: 2px; }
+  .enhancement {
+    background: var(--card);
+    border: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    align-items: center;
+    padding: 24px 32px;
+    gap: 24px;
+    transition: all 0.2s;
+  }
+  .enhancement:hover { background: #1A2130; border-color: rgba(245,166,35,0.25); }
+  .enh-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px; color: var(--border);
+    line-height: 1; transition: color 0.2s;
+  }
+  .enhancement:hover .enh-num { color: var(--sun); }
+  .enh-content h3 { font-weight: 600; font-size: 15px; margin-bottom: 5px; }
+  .enh-content p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .badge {
+    font-family: 'DM Mono', monospace; font-size: 9px;
+    padding: 5px 12px; white-space: nowrap;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .badge-high { background: rgba(46,204,113,0.1); color: var(--green); border: 1px solid rgba(46,204,113,0.2); }
+  .badge-med  { background: rgba(78,205,196,0.1); color: var(--accent); border: 1px solid rgba(78,205,196,0.2); }
+
+  /* ── SABRINA ── */
+  .sabrina-hero {
+    background: linear-gradient(135deg, #0F1520 0%, #161B28 100%);
+    border: 1px solid var(--border);
+    padding: 44px;
+    position: relative; overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .sabrina-hero::before {
+    content: '"';
+    position: absolute; top: -30px; right: 30px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 180px; color: rgba(245,166,35,0.04);
+    pointer-events: none; line-height: 1;
+  }
+  .sab-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; color: var(--sun);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .sabrina-hero h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px; letter-spacing: 0.02em;
+    margin-bottom: 12px;
+  }
+  .sabrina-hero p { font-size: 14px; color: var(--muted); max-width: 580px; line-height: 1.7; }
+  .pillars {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 2px; background: var(--border); border: 1px solid var(--border);
+  }
+  .pillar {
+    background: var(--card); padding: 28px 24px;
+    transition: background 0.2s;
+  }
+  .pillar:hover { background: #1A2130; }
+  .pillar-icon { font-size: 22px; margin-bottom: 10px; display: block; }
+  .pillar strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .pillar span { font-size: 12px; color: var(--muted); line-height: 1.55; }
+
+  /* ── MARKETING ── */
+  .channels-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: var(--border); border: 1px solid var(--border);
+  }
+  .channel {
+    background: var(--card); padding: 32px;
+    transition: background 0.2s; position: relative; overflow: hidden;
+  }
+  .channel:hover { background: #1A2130; }
+  .channel::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; background: var(--sun);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .channel:hover::after { transform: scaleX(1); }
+  .channel h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px; letter-spacing: 0.02em; margin-bottom: 4px;
+  }
+  .ch-sub {
+    font-family: 'DM Mono', monospace; font-size: 9px;
+    color: var(--sun); letter-spacing: 0.15em;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .channel ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .channel ul li {
+    font-size: 13px; color: var(--muted);
+    display: flex; gap: 10px; align-items: flex-start; line-height: 1.5;
+  }
+  .channel ul li::before { content: '→'; color: var(--sun); font-size: 11px; flex-shrink: 0; margin-top: 2px; }
+
+  /* ── WIX STACK ── */
+  .stack-table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+    border: 1px solid var(--border);
+  }
+  .stack-table th {
+    text-align: left; padding: 12px 18px;
+    font-family: 'DM Mono', monospace; font-size: 9px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); border-bottom: 1px solid var(--border);
+    background: var(--deep);
+  }
+  .stack-table td { padding: 16px 18px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .stack-table tr:last-child td { border-bottom: none; }
+  .stack-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .stack-table td:first-child { font-weight: 600; }
+  .stack-table td:nth-child(2) { color: var(--muted); }
+  .stack-table td:last-child { color: var(--sun); font-family: 'DM Mono', monospace; font-size: 12px; white-space: nowrap; }
+  .included-tag {
+    display: inline-block; padding: 3px 8px;
+    background: rgba(46,204,113,0.08);
+    border: 1px solid rgba(46,204,113,0.2);
+    color: var(--green);
+    font-family: 'DM Mono', monospace; font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .cost-note {
+    margin-top: 20px; padding: 18px 24px;
+    background: rgba(245,166,35,0.05);
+    border: 1px solid rgba(245,166,35,0.18);
+    display: flex; align-items: center; gap: 14px;
+    font-size: 13px; color: var(--muted);
+  }
+  .cost-note strong { color: var(--text); }
+
+  /* ── ROADMAP ── */
+  .roadmap { border: 1px solid var(--border); }
+  .rm-item {
+    display: grid; grid-template-columns: 110px 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .rm-item:last-child { border-bottom: none; }
+  .rm-phase {
+    padding: 20px 24px; border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; justify-content: center;
+    background: var(--deep);
+  }
+  .rm-phase .ph-label {
+    font-family: 'DM Mono', monospace; font-size: 8px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 3px;
+  }
+  .rm-phase .ph-time { font-weight: 600; font-size: 13px; color: var(--sun); }
+  .rm-actions {
+    padding: 20px 28px;
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    background: var(--card);
+  }
+  .chip {
+    padding: 5px 12px;
+    background: var(--deep); border: 1px solid var(--border);
+    font-size: 11px; color: var(--text);
+    transition: all 0.2s; cursor: default;
+  }
+  .chip:hover { border-color: var(--sun); color: var(--sun); }
+
+  /* ── FOOTER ── */
+  .panel-footer {
+    margin-top: 32px; padding: 28px 32px;
+    background: var(--deep); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-text { font-size: 13px; color: var(--muted); }
+  .footer-email {
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--sun); letter-spacing: 0.08em;
+    padding: 10px 20px; border: 1px solid rgba(245,166,35,0.3);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .header { padding: 20px 20px 0; }
+    .header-stats { display: none; }
+    .panel { padding: 24px 20px; }
+    .overview-grid, .channels-grid, .pillars { grid-template-columns: 1fr; }
+    .enhancement { grid-template-columns: 40px 1fr; }
+    .badge { display: none; }
+    .rm-item { grid-template-columns: 80px 1fr; }
+    .tab-btn { padding: 12px 14px; font-size: 9px; }
+    .tab-btn .tab-icon { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div class="brand">
+      <div class="brand-name">ALAMO <span>ENERGY</span> SOLUTIONS</div>
+      <div class="brand-sub">AI Growth Strategy · San Antonio, TX · 2026</div>
+    </div>
+    <div class="header-stats">
+      <div class="hstat"><strong>5</strong><span>AI Tools</span></div>
+      <div class="hstat"><strong>6</strong><span>Channels</span></div>
+      <div class="hstat"><strong>$30</strong><span>Mo. Start</span></div>
+    </div>
+  </div>
+
+  <nav class="tabs-nav" id="tabsNav">
+    <button class="tab-btn active" onclick="switchTab('overview')">
+      <span class="tab-icon">🏠</span> Overview
+    </button>
+    <button class="tab-btn" onclick="switchTab('ai')">
+      <span class="tab-icon">🤖</span> AI Enhancements
+    </button>
+    <button class="tab-btn" onclick="switchTab('sabrina')">
+      <span class="tab-icon">🍄</span> Sabrina Method
+    </button>
+    <button class="tab-btn" onclick="switchTab('marketing')">
+      <span class="tab-icon">📣</span> Marketing
+    </button>
+    <button class="tab-btn" onclick="switchTab('wix')">
+      <span class="tab-icon">⚙️</span> Wix Stack
+    </button>
+    <button class="tab-btn" onclick="switchTab('roadmap')">
+      <span class="tab-icon">🗺️</span> Roadmap
+    </button>
+  </nav>
+</div>
+
+<div class="tab-panels">
+
+  <!-- ── OVERVIEW ── -->
+  <div class="panel active" id="panel-overview">
+    <div class="panel-label">Overview</div>
+    <div class="panel-title">OWN YOUR POWER.<br><span style="color:var(--sun)">OWN YOUR MARKET.</span></div>
+
+    <div class="big-angle" style="margin-bottom:24px;">
+      <div class="big-angle-icon">☀️</div>
+      <div class="big-angle-text">
+        <h3>The Opportunity in San Antonio</h3>
+        <p>Intense summer heat, an aging grid, history of outages, and rising CPS rates = a perfect market for solar + battery backup. Most competitors are doing zero AI-powered marketing. This strategy puts Alamo Energy Solutions ahead of all of them — starting at just $30/month.</p>
+      </div>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-card">
+        <span class="ov-icon">🤖</span>
+        <div class="ov-title">AI Enhancements</div>
+        <div class="ov-body">5 AI tools — chatbot, lead scoring, content pipeline, conversational system sizer, and email follow-up sequences. All working 24/7 without a team.</div>
+        <span class="ov-tag">5 tools</span>
+      </div>
+      <div class="overview-card">
+        <span class="ov-icon">🍄</span>
+        <div class="ov-title">The Sabrina Method</div>
+        <div class="ov-body">Record one install video → auto-publish to 8 platforms. Build a viral "Outage Savings Calculator" micro-app. No developer. No agency. Just Abraham + AI.</div>
+        <span class="ov-tag">Build Fast</span>
+      </div>
+      <div class="overview-card">
+        <span class="ov-icon">📣</span>
+        <div class="ov-title">Marketing Strategy</div>
+        <div class="ov-body">6 channels: SEO, Facebook/Instagram ads, TikTok/YouTube, Nextdoor, Google Reviews, and email nurture. Each one tuned for San Antonio homeowners.</div>
+        <span class="ov-tag">6 Channels</span>
+      </div>
+      <div class="overview-card">
+        <span class="ov-icon">⚙️</span>
+        <div class="ov-title">Wix AI Stack</div>
+        <div class="ov-body">Wix is packed with built-in AI tools — blog, social captions, Google Ads, email. Add Ultimo Bots chatbot from the App Market. Total: ~$30/month, no dev needed.</div>
+        <span class="ov-tag">~$30/mo</span>
+      </div>
+    </div>
+
+    <div class="panel-footer">
+      <div class="footer-text">This deck was prepared with AI. Ready to send to Abraham.</div>
+      <div class="footer-email">abraham@alamoenergysolutions.com</div>
+    </div>
+  </div>
+
+  <!-- ── AI ENHANCEMENTS ── -->
+  <div class="panel" id="panel-ai">
+    <div class="panel-label">AI Enhancements</div>
+    <div class="panel-title">AI THAT WORKS<br><span style="color:var(--sun)">FOR YOU 24/7</span></div>
+
+    <div class="enhancement-list">
+      <div class="enhancement">
+        <div class="enh-num">01</div>
+        <div class="enh-content">
+          <h3>Website AI Chat Assistant</h3>
+          <p>Trained on Alamo Energy's services — Tesla Powerwall, Franklin WH, packages, financing, and the free roof offer. Answers visitor questions 24/7, guides system sizing, captures lead info naturally, and alerts Abraham on hot leads.</p>
+        </div>
+        <span class="badge badge-high">High Impact</span>
+      </div>
+      <div class="enhancement">
+        <div class="enh-num">02</div>
+        <div class="enh-content">
+          <h3>AI-Powered Lead Scoring & Qualification</h3>
+          <p>Auto-score leads by home size, energy usage, and backup goals using existing site form data. Trigger personalized follow-up emails based on intent (free roof vs. battery-only). Notify Abraham instantly on high-intent submissions via Make.com + Gmail.</p>
+        </div>
+        <span class="badge badge-high">High Impact</span>
+      </div>
+      <div class="enhancement">
+        <div class="enh-num">03</div>
+        <div class="enh-content">
+          <h3>AI Content Pipeline for Exposure</h3>
+          <p>Auto-generate weekly social posts, short-form video scripts, and email newsletters. Repurpose one install video into TikTok, Reels, YouTube Shorts, Facebook, LinkedIn, X, and email — simultaneously, using Make.com + Buffer.</p>
+        </div>
+        <span class="badge badge-med">Exposure</span>
+      </div>
+      <div class="enhancement">
+        <div class="enh-num">04</div>
+        <div class="enh-content">
+          <h3>Conversational System Sizing Bot</h3>
+          <p>Replace the static form with an AI conversation flow. Ask smart follow-up questions ("Medical equipment? Generator?"), recommend the right package (Tesla vs. Franklin WH), and auto-email a personalized PDF system summary to the lead.</p>
+        </div>
+        <span class="badge badge-high">High Impact</span>
+      </div>
+      <div class="enhancement">
+        <div class="enh-num">05</div>
+        <div class="enh-content">
+          <h3>AI Email Follow-Up Sequences</h3>
+          <p>After any form fill, AI generates and sends a personalized 5-email nurture sequence: system recommendation → grid education → free roof offer → CPS credits → final consultation push. All automated, zero manual effort.</p>
+        </div>
+        <span class="badge badge-med">Nurture</span>
+      </div>
+    </div>
+
+    <div class="panel-footer">
+      <div class="footer-text">Tools: Claude API · Make.com · Zapier · Gmail · Wix Forms</div>
+      <div class="footer-email">abraham@alamoenergysolutions.com</div>
+    </div>
+  </div>
+
+  <!-- ── SABRINA ── -->
+  <div class="panel" id="panel-sabrina">
+    <div class="panel-label">The Sabrina Ramonov Method</div>
+    <div class="panel-title">BUILD FAST.<br><span style="color:var(--sun)">AUTOMATE EVERYTHING.</span></div>
+
+    <div class="sabrina-hero">
+      <div class="sab-label">Sabrina Ramonov · AI Creator · 1.4M Followers</div>
+      <h2>What She Would Do for Abraham</h2>
+      <p>Sabrina's core philosophy: one piece of content becomes 8 platforms. One form becomes a lead machine. No dev team, no agency — just smart automation tools stacked together and a bias toward shipping fast.</p>
+    </div>
+
+    <div class="pillars" style="margin-bottom:24px;">
+      <div class="pillar">
+        <span class="pillar-icon">📱</span>
+        <strong>8-Platform Repurposing</strong>
+        <span>Record one Tesla install video → auto-distribute to TikTok, Reels, YouTube, Facebook, LinkedIn, X, email, and blog simultaneously via Blotato or Make.com. Exposure problem solved in one workflow.</span>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🧲</span>
+        <strong>Viral Lead Magnet App</strong>
+        <span>Build a "San Antonio Outage Savings Calculator" no-code micro-app (Lovable/Replit). Goes viral locally, collects emails, feeds the pipeline automatically. One afternoon to build.</span>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">💬</span>
+        <strong>Vibe-Coded Chatbot</strong>
+        <span>Use no-code tools to spin up Abraham's website AI assistant in an afternoon. No developer needed. AI trained on Alamo Energy's services, packages, and offers.</span>
+      </div>
+    </div>
+
+    <div class="big-angle">
+      <div class="big-angle-icon">🚀</div>
+      <div class="big-angle-text">
+        <h3>Her Tools of Choice for This Business</h3>
+        <p style="font-size:13px; color:var(--muted); line-height:1.7;"><strong style="color:var(--text)">Blotato</strong> — 8-platform content repurposing&nbsp;&nbsp;·&nbsp;&nbsp;<strong style="color:var(--text)">Make.com</strong> — automation workflows&nbsp;&nbsp;·&nbsp;&nbsp;<strong style="color:var(--text)">Lovable / Replit</strong> — no-code micro apps&nbsp;&nbsp;·&nbsp;&nbsp;<strong style="color:var(--text)">Zapier</strong> — form → CRM → email triggers&nbsp;&nbsp;·&nbsp;&nbsp;<strong style="color:var(--text)">Buffer</strong> — social scheduling</p>
+      </div>
+    </div>
+
+    <div class="panel-footer">
+      <div class="footer-text">YouTube: @sabrina_ramonov · "Build fast, automate everything"</div>
+      <div class="footer-email">abraham@alamoenergysolutions.com</div>
+    </div>
+  </div>
+
+  <!-- ── MARKETING ── -->
+  <div class="panel" id="panel-marketing">
+    <div class="panel-label">Marketing Strategy</div>
+    <div class="panel-title">6 CHANNELS.<br><span style="color:var(--sun)">ONE MISSION.</span></div>
+
+    <div class="channels-grid">
+      <div class="channel">
+        <h3>🔍 SEO</h3>
+        <div class="ch-sub">Free · Long-Term · High Trust</div>
+        <ul>
+          <li>Target "solar battery backup San Antonio", "Tesla Powerwall San Antonio", "CPS battery credits 2026"</li>
+          <li>Weekly AI blog posts: "What happens during a San Antonio grid outage?" / "How to qualify for CPS credits"</li>
+          <li>Google Business Profile with install photos — 50+ reviews is the priority target</li>
+          <li>Activate Wix AI meta tags on every page — already built in, just turn it on</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <h3>📘 Facebook & Instagram Ads</h3>
+        <div class="ch-sub">Fastest Leads · $30–$50 CPL</div>
+        <ul>
+          <li>"San Antonio — Get a FREE Roof With Solar + Battery" — scroll-stopper headline</li>
+          <li>"What happens to your family when the grid goes down this summer?"</li>
+          <li>Target Stone Oak, Alamo Heights, Boerne, Helotes homeowners by ZIP code</li>
+          <li>Facebook Lead Forms — no landing page needed, lower friction, faster leads</li>
+          <li>Retarget website visitors with softer CTA after 3 days</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <h3>📺 TikTok & YouTube Shorts</h3>
+        <div class="ch-sub">Exposure · Trust · Free Traffic</div>
+        <ul>
+          <li>"We just installed a Tesla Powerwall in [neighborhood] — here's what it does"</li>
+          <li>"San Antonio homeowner gets a FREE roof + solar — watch how"</li>
+          <li>"What CPS doesn't tell you about battery credits"</li>
+          <li>Abraham's Tesla product training = perfect content. Film it while it's happening.</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <h3>🏘️ Nextdoor & FB Groups</h3>
+        <div class="ch-sub">Hyper-Local · Word of Mouth</div>
+        <ul>
+          <li>Post in San Antonio neighborhood groups after every install (with homeowner permission)</li>
+          <li>Referral program: "Refer a neighbor, get $500 off your system"</li>
+          <li>Solar is a neighborhood product — when one house gets panels, neighbors notice</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <h3>⭐ Google Reviews</h3>
+        <div class="ch-sub">Trust Engine · Local SEO Boost</div>
+        <ul>
+          <li>Text every homeowner a direct Google review link immediately post-install</li>
+          <li>50+ reviews pushes Alamo Energy above all competitors in local search</li>
+          <li>Feature video testimonials on site and repurpose in Facebook ads</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <h3>📧 Email Nurture</h3>
+        <div class="ch-sub">Close the Fence-Sitters</div>
+        <ul>
+          <li>Day 1: "Here's your custom system recommendation"</li>
+          <li>Day 3: "San Antonio's grid: what homeowners don't know"</li>
+          <li>Day 5: "The free roof offer — here's exactly how it works"</li>
+          <li>Day 10: "CPS credits — here's what you're leaving on the table"</li>
+          <li>Day 14: "Last chance: book your free consultation"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel-footer">
+      <div class="footer-text">Lead cost estimate: $30–$50 per lead via Facebook/Instagram ads</div>
+      <div class="footer-email">abraham@alamoenergysolutions.com</div>
+    </div>
+  </div>
+
+  <!-- ── WIX STACK ── -->
+  <div class="panel" id="panel-wix">
+    <div class="panel-label">Wix AI Stack</div>
+    <div class="panel-title">ALL INSIDE WIX.<br><span style="color:var(--sun)">NO DEV NEEDED.</span></div>
+
+    <table class="stack-table">
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>What It Does</th>
+          <th>Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Wix Kleo (Built-In)</td>
+          <td>AI marketing agent — generates social posts, sets up Google Ads, builds a custom marketing plan from the Wix dashboard</td>
+          <td><span class="included-tag">Included</span></td>
+        </tr>
+        <tr>
+          <td>Wix AI Blog</td>
+          <td>Auto-generates complete SEO blog posts with keywords, images, and brand tone. Run weekly for organic search traffic.</td>
+          <td><span class="included-tag">Included</span></td>
+        </tr>
+        <tr>
+          <td>Wix AI Social Captions</td>
+          <td>Creates optimized captions for Instagram, Facebook, X, LinkedIn, and YouTube — all at once from one dashboard</td>
+          <td><span class="included-tag">Included</span></td>
+        </tr>
+        <tr>
+          <td>Wix AI Google Ads</td>
+          <td>Generates keyword-optimized ad titles and descriptions for Google Ads, managed entirely from inside Wix</td>
+          <td><span class="included-tag">Included</span></td>
+        </tr>
+        <tr>
+          <td>Wix AI Meta Tags</td>
+          <td>Auto-creates SEO meta tags and descriptions for every page on the site — huge SEO boost, one-click activation</td>
+          <td><span class="included-tag">Included</span></td>
+        </tr>
+        <tr>
+          <td>Wix Email Marketing</td>
+          <td>AI-generated email copy and subject lines, optimal send-time scheduling, lead nurture automation</td>
+          <td>$10 / mo</td>
+        </tr>
+        <tr>
+          <td>Ultimo Bots (App Market)</td>
+          <td>GPT-powered AI chatbot + lead capture. 2-min install, auto-learns site content, connects to Facebook & Instagram DMs</td>
+          <td>$19 / mo</td>
+        </tr>
+        <tr>
+          <td>Wix Ascend CRM</td>
+          <td>Track leads, manage contacts, automate follow-up workflows — all linked to the site's forms</td>
+          <td>Included / upgrade</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cost-note">
+      <span style="font-size:22px">💡</span>
+      <span><strong>Total starting cost: ~$30/month</strong> — fully AI-powered marketing + chatbot system on the existing Wix site. No developer or agency required. Most competitors have none of this.</span>
+    </div>
+
+    <div class="panel-footer">
+      <div class="footer-text">All tools available at wix.com or via Wix App Market</div>
+      <div class="footer-email">abraham@alamoenergysolutions.com</div>
+    </div>
+  </div>
+
+  <!-- ── ROADMAP ── -->
+  <div class="panel" id="panel-roadmap">
+    <div class="panel-label">Priority Roadmap</div>
+    <div class="panel-title">START HERE.<br><span style="color:var(--sun)">BUILD FAST.</span></div>
+
+    <div class="roadmap">
+      <div class="rm-item">
+        <div class="rm-phase">
+          <div class="ph-label">Phase 1</div>
+          <div class="ph-time">This Week</div>
+        </div>
+        <div class="rm-actions">
+          <span class="chip">Google Business Profile</span>
+          <span class="chip">Request Reviews from Past Clients</span>
+          <span class="chip">Activate Wix AI Meta Tags</span>
+          <span class="chip">Install Ultimo Bots Chatbot</span>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-phase">
+          <div class="ph-label">Phase 2</div>
+          <div class="ph-time">Week 2</div>
+        </div>
+        <div class="rm-actions">
+          <span class="chip">Launch Facebook Lead Ads</span>
+          <span class="chip">Set Up Wix Email Sequences</span>
+          <span class="chip">Film First TikTok Install Video</span>
+          <span class="chip">Activate Wix AI Social Captions</span>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-phase">
+          <div class="ph-label">Phase 3</div>
+          <div class="ph-time">Month 2</div>
+        </div>
+        <div class="rm-actions">
+          <span class="chip">Launch AI Blog — Weekly SEO Posts</span>
+          <span class="chip">Build Lead Scoring Automation</span>
+          <span class="chip">Launch Referral Program</span>
+          <span class="chip">Upgrade to Conversational System Sizer</span>
+        </div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-phase">
+          <div class="ph-label">Phase 4</div>
+          <div class="ph-time">Month 3+</div>
+        </div>
+        <div class="rm-actions">
+          <span class="chip">8-Platform Content Repurposing</span>
+          <span class="chip">Viral Calculator Micro-App</span>
+          <span class="chip">Nextdoor + Facebook Group Strategy</span>
+          <span class="chip">Full AI Follow-Up Automation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-footer">
+      <div class="footer-text">Most competitors in San Antonio are doing none of this.</div>
+      <div class="footer-email">abraham@alamoenergysolutions.com</div>
+    </div>
+  </div>
+
+</div><!-- /tab-panels -->
+
+<script>
+  function switchTab(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+</script>
+</body>
+</html>
