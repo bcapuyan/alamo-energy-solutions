@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Started | Alamo Energy Solutions</title>
+  <meta name="description" content="Book a free consultation with Alamo Energy Solutions. We'll size your system and walk you through your options." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">
+        <img src="https://static.wixstatic.com/media/a4d5c8_ef5927a9f8e044c197f343396d3817cb~mv2.png" alt="Alamo Energy Solutions logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <span style="display:none;">Alamo Energy Solutions</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="packages.html">Packages</a></li>
+        <li><a href="financing.html">Financing</a></li>
+        <li><a href="about.html">About &amp; Contact</a></li>
+        <li><a href="book-online.html" class="nav-cta active">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Page Hero ── -->
+  <section class="page-hero">
+    <h1>Let's size your system.</h1>
+    <p>Fill out the form below and we'll get back to you quickly with a custom sizing recommendation and financing options — no pressure, no jargon.</p>
+  </section>
+
+  <!-- ── Booking Form ── -->
+  <section class="form-section">
+    <div class="form-section-inner" style="max-width: 760px;">
+      <p class="section-label">Free Consultation</p>
+      <h2 class="section-title">System Sizing Calculation</h2>
+      <p class="section-subtitle" style="margin: 0 auto 0;">Tell us about your home and goals. We'll review your info and reach out to walk you through your options.</p>
+      <form class="contact-form" onsubmit="handleFormSubmit(event)" style="margin-top: 40px;">
+        <div class="form-group">
+          <label for="firstName">First Name *</label>
+          <input type="text" id="firstName" name="firstName" required />
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name *</label>
+          <input type="text" id="lastName" name="lastName" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number *</label>
+          <input type="tel" id="phone" name="phone" required />
+        </div>
+        <div class="form-group">
+          <label for="bedrooms">Number of Bedrooms</label>
+          <select id="bedrooms" name="bedrooms">
+            <option value="">Select...</option>
+            <option>1–2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5+</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="kwh">Monthly Electricity Usage (kWh)</label>
+          <input type="number" id="kwh" name="kwh" placeholder="e.g. 1200" />
+        </div>
+        <div class="form-group full-width">
+          <label for="goal">Primary Backup Goal *</label>
+          <select id="goal" name="goal" required>
+            <option value="">Select...</option>
+            <option>Essential circuits only (lights, fridge, phone)</option>
+            <option>Whole-home backup</option>
+            <option>Solar + battery combination</option>
+            <option>I'm not sure — help me decide</option>
+          </select>
+        </div>
+        <div class="form-group full-width">
+          <label for="interest">What are you most interested in?</label>
+          <select id="interest" name="interest">
+            <option value="">Select...</option>
+            <option>Battery backup only</option>
+            <option>Solar panels only</option>
+            <option>Solar + battery system</option>
+            <option>Free roof with solar + battery</option>
+            <option>Financing information</option>
+          </select>
+        </div>
+        <div class="form-group full-width">
+          <label for="notes">Anything else we should know?</label>
+          <textarea id="notes" name="notes" placeholder="e.g. We lose power frequently during summer storms, or I'm interested in the free roof offer..."></textarea>
+        </div>
+        <div class="full-width" style="text-align:center; margin-top: 8px;">
+          <button type="submit" class="btn btn-dark" style="min-width: 240px;">Calculate My System</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── What Happens Next ── -->
+  <section class="steps" style="background: var(--cream);">
+    <div class="steps-inner">
+      <p class="section-label">What to Expect</p>
+      <h2 class="section-title">What happens after you submit</h2>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <h3>We review your details</h3>
+            <p>Our team looks at your usage, goals, and home info to prepare a real, customized recommendation — not a generic quote.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <h3>We reach out within 24 hours</h3>
+            <p>A member of our local San Antonio team will contact you by phone or email to go over your options and answer any questions.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <h3>No pressure, clear numbers</h3>
+            <p>We'll walk you through system sizing, financing, and next steps. You decide what's right for your family — on your timeline.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="https://static.wixstatic.com/media/a4d5c8_ef5927a9f8e044c197f343396d3817cb~mv2.png" alt="Alamo Energy Solutions" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <span class="brand-name" style="display:none;">Alamo Energy Solutions</span>
+        <p>Empowering San Antonio homeowners with custom energy systems and reliable backup power solutions.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="packages.html">Packages</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="about.html">About &amp; Contact</a></li>
+          <li><a href="book-online.html">Get Started</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <address>
+          San Antonio, Texas<br />
+          <a href="mailto:hello@alamoenergysolutions.com">hello@alamoenergysolutions.com</a>
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Alamo Energy Solutions. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
